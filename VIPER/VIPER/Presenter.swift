@@ -17,18 +17,19 @@ protocol AnyPresenter: AnyObject {
     var view: AnyView? { get set }
     
     func interactorDidFetchUsers(with result: Result<[User], Error>)
+    func viewDidLoad()
 }
 
 class UserPresenter: AnyPresenter {
     var router: AnyRouter?
     
-    var interactor: AnyInteractor? {
-        didSet {
-            interactor?.getUsers()
-        }
-    }
+    var interactor: AnyInteractor?
     
     weak var view: AnyView?
+    
+    func viewDidLoad() {
+        interactor?.getUsers()
+    }
     
     func interactorDidFetchUsers(with result: Result<[User], Error>) {
         switch result {

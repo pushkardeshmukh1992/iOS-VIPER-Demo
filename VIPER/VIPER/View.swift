@@ -40,6 +40,7 @@ class UserViewController: UIViewController {
         super.viewDidLoad()
         
         setupLayout()
+        presenter?.viewDidLoad()
     }
     
     override func viewDidLayoutSubviews() {
